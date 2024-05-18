@@ -16,13 +16,7 @@ export interface BreedQueryResponse {
 const useGetBreeds = (): UseInfiniteQueryResult<BreedQueryResponse, Error> => {
   return useInfiniteQuery({
     queryKey: [Queries.BREEDS],
-    queryFn: async ({ pageParam = 0 }) => {
-      console.log('Fetching breeds for page:', pageParam);
-      const data = await getBreeds(pageParam);
-      console.log('Fetched data:', data);
-
-      return data;
-    },
+    queryFn: getBreeds,
     initialPageParam: 0,
     getNextPageParam: (lastPageData, allPagesData) => {
       console.log('Getting next page param:', lastPageData, allPagesData);

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import './App.css';
 import { Box, List, ListItem, ListItemButton, ListItemText, TextField } from '@mui/material';
 import useGetBreeds from './hooks/useGetBreeds';
@@ -6,25 +6,9 @@ import useFetchImages from './hooks/useFetchImages';
 import useCheckViewPort from './hooks/useCheckViewPort';
 import useFilterBreeds from './hooks/useFilterBreeds';
 import useDebounce from './hooks/useDebounce';
-import { useInView } from 'react-intersection-observer';
-import { useInfiniteQuery } from '@tanstack/react-query';
-import { Queries } from './queries';
-import { getBreeds } from './services/api';
 
 function App() {
-  // const { isPending, error, data, isFetchingNextPage, fetchNextPage, hasNextPage } = useGetBreeds();
-
-  const { isPending, error, data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery({
-    queryKey: [Queries.BREEDS],
-    queryFn: getBreeds,
-    staleTime: 10000,
-    initialPageParam: 1,
-    getNextPageParam: (lastPage, allPages) => {
-      console.log('calledd');
-      return lastPage.length === 0 ? null : allPages.length + 1;
-    },
-  });
-
+  const { isPending, error, data, isFetchingNextPage, fetchNextPage, hasNextPage } = useGetBreeds();
   const ref = useCheckViewPort(fetchNextPage);
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -69,15 +53,7 @@ function App() {
             </ListItem>
           );
         })}
-        {/* {hasNextPage && !isFetchingNextPage && !searchTerm && (
-          <ListItem ref={ref} component='div' disablePadding>
-            <ListItemButton disabled>
-              <ListItemText primary='Loading more...' />
-            </ListItemButton>
-          </ListItem>
-        )} */}
-
-        {hasNextPage && (
+        {hasNextPage && !isFetchingNextPage && !searchTerm && (
           <ListItem ref={ref} component='div' disablePadding>
             <ListItemButton disabled>
               <ListItemText primary='Loading more...' />
