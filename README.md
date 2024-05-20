@@ -1,30 +1,54 @@
-# React + TypeScript + Vite
+Sample app built in React that uses https://thecatapi.com/, allowing user to filter different cat breeds.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Initial data comes from the following endpoint: **/breeds**, for each breed, we call **/images/search** to fetch a corresponding image
+- Typing in Search calls **/breeds/search** which suggests different breeds to choose from
+- If a breed is selected, different images for the same breed are loaded using **/images/search**
 
-Currently, two official plugins are available:
+## NOTE
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Some code is added only for demonstrating purposes, and might not be suitable for a real-world application.
+For this purpose, .env is not added in the .gitignore
 
-## Expanding the ESLint configuration
+### Further optimizations/improvements if the app was about to scale
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- virtualized list implementation: https://mui.com/material-ui/react-list/#system-VirtualizedList.tsx
+- adding a state management library (zustandt/redux)
+- using **Intersection Observer API** for infinite scrolling instead of scroll event
+- Splitting **BreedList** into even smaller partial components if we plan to show more info
 
-- Configure the top-level `parserOptions` property like this:
+### Stack
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+- ReactJS
+- Typescript
+- [MUI](https://mui.com/)
+- [React Query](https://tanstack.com/query/latest/docs/framework/react/overview)
+
+### Required dependencies on the host PC:
+
+[NodeJS (v20.13.1)](https://nodejs.org/)
+
+### Instructions
+
+**It is tested on Microsoft Windows OS using the NodeJS version mentioned above. There is no guarantee it will start/work as expected on other OS**
+
+### Setting up the App
+
+The app was built using Vite
+Once cloned, run
+
+```bash
+1. npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+to install the necessary dependencies
+
+### Starting Development
+
+Start the app in the `dev` environment:
+The development server can be ran locally using npm. This allows testing of the application's code locally.
+
+```bash
+npm run dev
+```
+
+Congrats, You've made it! :)

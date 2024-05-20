@@ -1,3 +1,3 @@
 export enum AppRoutes {
-  CATS = "",
+  CATS = '',
 }
