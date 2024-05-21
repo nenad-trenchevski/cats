@@ -1,19 +1,18 @@
-import { Box, Fade, Grid, Skeleton, Typography, Paper } from '@mui/material';
+import { Box, Fade, Grid, Skeleton, Typography, Paper, useTheme } from '@mui/material';
 import { styled } from '@mui/system';
-import { defaultTheme } from '../utilities/constants';
 import { BreedImg, SelectBreed } from '../types/BreedType';
 
-const StyledPaper = styled(Paper)(() => ({
-  border: `1px solid ${defaultTheme.palette.border.main}`,
+const StyledPaper = styled(Paper)(({ theme }) => ({
+  border: `1px solid ${theme.palette.divider}`,
   borderRadius: '10px',
   '&:hover': {
-    border: `1px solid ${defaultTheme.palette.state.dark}`,
+    border: `1px solid ${theme.palette.secondary.dark}`,
   },
   '&:focus': {
-    border: `2px solid ${defaultTheme.palette.state.dark}`,
+    border: `1px solid ${theme.palette.secondary.dark}`,
   },
   '&:focus-within .item': {
-    backgroundColor: defaultTheme.palette.state.light,
+    backgroundColor: `${theme.palette.secondary.main}`,
     borderBottomLeftRadius: '10px',
     borderBottomRightRadius: '10px',
   },
@@ -28,6 +27,7 @@ interface SingleBreedProps {
 }
 
 const SingleBreed = ({ onImageLoad, breed, isLoading, imageError, imageUrl }: SingleBreedProps) => {
+  const theme = useTheme();
   return (
     <Grid item xs={12} sm={6} md={3} lg={3}>
       <StyledPaper tabIndex={0}>
@@ -44,7 +44,7 @@ const SingleBreed = ({ onImageLoad, breed, isLoading, imageError, imageUrl }: Si
               borderTopLeftRadius: '10px',
               borderTopRightRadius: '10px',
               overflow: 'hidden',
-              backgroundColor: defaultTheme.palette.background.main,
+              backgroundColor: theme.palette.background.default,
             }}
           >
             {imageError ? (

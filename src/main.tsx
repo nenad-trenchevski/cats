@@ -8,7 +8,7 @@ import { RouterProvider } from 'react-router-dom';
 import { router } from './router.tsx';
 import { CssBaseline, Theme, ThemeProvider } from '@mui/material';
 import ThemeManager from './themes/ThemeManager.ts';
-import { defaultTheme } from './utilities/constants.ts';
+import defaultTheme from './theme.ts';
 
 const themeManager = new ThemeManager(defaultTheme as Theme);
 const theme = themeManager.getTheme();

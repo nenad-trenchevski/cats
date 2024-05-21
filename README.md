@@ -15,6 +15,8 @@ For this purpose, .env is not added in the .gitignore
 - adding a state management library (zustandt/redux)
 - using **Intersection Observer API** for infinite scrolling instead of scroll event
 - Splitting **BreedList** into even smaller partial components if we plan to show more info
+- Test coverage
+- pre-commit hooks (check for linting, run tests)
 
 ### Stack
 
