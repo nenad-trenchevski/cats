@@ -9,21 +9,17 @@ const useDisplayBreeds = (
 ) => {
   const [displayedBreeds, setDisplayedBreeds] = useState<Array<BreedImg & SelectBreed>>(breedImageInfo);
 
-  // display either breeds (initially)
-  // or images for a specific breed (if there is a selected breed)
   useEffect(() => {
     if (!isFetching) {
       if (selectedBreed) {
-        setDisplayedBreeds(images.length ? images : displayedBreeds);
+        setDisplayedBreeds(prevDisplayedBreeds => (images.length ? images : prevDisplayedBreeds));
       } else {
         setDisplayedBreeds(breedImageInfo);
       }
     }
-  }, [isFetching, images, breedImageInfo, displayedBreeds, selectedBreed]);
+  }, [isFetching, images, breedImageInfo, selectedBreed]);
 
-  const breedsToDisplay = useMemo(() => displayedBreeds, [displayedBreeds]);
-
-  return breedsToDisplay;
+  return useMemo(() => displayedBreeds, [displayedBreeds]);
 };
 
 export default useDisplayBreeds;
