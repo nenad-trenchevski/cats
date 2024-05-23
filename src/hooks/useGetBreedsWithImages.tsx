@@ -10,6 +10,9 @@ const useGetBreedsWithImages = () => {
 
   const allBreeds = useMemo(() => (data ? data.pages.flatMap(page => page) : []), [data]);
 
+  // update data without causing re-render each time
+  // breedImagesRef.current does not change, only it's properties
+  // as refs are persistent across re-renders (compared to a variable)
   const breedImagesRef = useRef<Record<string, string>>({});
   const errorRef = useRef<Record<string, string>>({});
   const [fetchError, setFetchError] = useState<string | null>(null);

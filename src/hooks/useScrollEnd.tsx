@@ -34,8 +34,6 @@ const useScrollEnd = (threshold: number = 50) => {
 
   useEffect(() => {
     if (setIsScrolledToEnd) {
-      console.log('CALLED');
-
       setIsScrolledToEnd(false);
     }
   }, [isScrolledToEnd]);

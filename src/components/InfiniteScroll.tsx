@@ -14,7 +14,6 @@ const InfiniteScroll = ({ children, fetchNextPage, showLoading, shouldFetchNextP
 
   useEffect(() => {
     if (isScrolledToEnd && shouldFetchNextPage) {
-      console.log('CALLEDD');
       fetchNextPage();
     }
   }, [isScrolledToEnd, fetchNextPage, shouldFetchNextPage]);
